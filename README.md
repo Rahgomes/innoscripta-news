@@ -16,38 +16,44 @@ Innoscripta News is a modern, responsive news aggregator application built with 
 
 ## Prerequisites
 
-- Node.js and npm installed.
+- Node.js >= 16 and npm installed.
 - Docker installed (Docker desktop).
 
 ## Installation
 
 1. **Clone the repository**
 
-git clone https://github.com/Rahgomes/innoscripta-news.git
+git clone <https://github.com/Rahgomes/innoscripta-news.git>
 cd innoscripta-news
 
 2. **Install dependencies**
 
-npm install
+```npm install```
 
-3. **Create a .env file in the root directory and add your API keys**
+3. **Create a .env file in the root directory and add your API keys** (I left some keys in the repository on purpose for testing)
 
+```sh
 - VITE_REACT_NEWS_API_ORG=your_newsapi_key
 - VITE_REACT_NEWS_API_ORG_SECRET=your_newsapi_secret
 - VITE_REACT_NEW_YORK_TIMES=your_nyt_api_key
 - VITE_REACT_NEW_YORK_TIMES_SECRET=your_nyt_secret
 - VITE_REACT_THE_GUARDIAN=your_guardian_api_key
 - VITE_REACT_THE_GUARDIAN_SECRET=your_guardian_secret
+```
 
 Obs: For now, the URL and KEY parameters are in the code to an easy executing
 
 4. **Start the development server**
 
+```sh
 npm run dev
+```
 
 5. **Build the project for production**
 
+```sh
 npm run build
+```
 
 ## Docker Setup
 
@@ -55,13 +61,17 @@ To containerize and deploy the application using Docker, follow these steps:
 
 1. **Build the Docker image**
 
+```sh
 docker build -t dockerinnoscriptanews .
+```
 
-2. **un the Docker container**
+2. **Run the Docker container**
 
+```sh
 docker run -p 80:80 dockerinnoscriptanews
+```
 
-Then: The application will be accessible at http://localhost on your browser.
+Then: The application will be accessible at <http://localhost> on your browser.
 
 ## Available Scripts
 
