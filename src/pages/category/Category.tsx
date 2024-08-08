@@ -1,40 +1,38 @@
 import { useEffect } from "react";
-import Title from "../../components/title";
-import { useParams } from "react-router-dom";
-import { MAIN_MENU } from "../../lib/constants";
-import NewsSourceSection from "../../components/newsSourceSection";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { fetchNewsFromNYT } from "../../redux/slices/nytApiSlice";
 import { fetchNewsFromNAOrg } from "../../redux/slices/naoApiSlice";
 import { fetchNewsFromTGA } from "../../redux/slices/tgaApiSlice";
-import {
-  AppDispatch,
-  NewsCategory,
-  NormalizedArticle,
-  RootState,
-} from "../../lib/types";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
+import Title from "../../components/title";
+import NewsSourceSection from "../../components/newsSourceSection";
+import * as CONSTS from "../../lib/constants";
+import * as TYPES from "../../lib/types";
 
 const Category = () => {
   const { category } = useParams();
 
-  const menuItem = MAIN_MENU.find((item) => item.category === category);
+  const menuItem = CONSTS.MAIN_MENU.find((item) => item.category === category);
 
-  const dispatch = useDispatch<AppDispatch>();
-  const nytApi = useSelector((state: RootState) => state.nytApi);
-  const naoApi = useSelector((state: RootState) => state.naoApi);
-  const tgaApi = useSelector((state: RootState) => state.tgaApi);
+  const dispatch = useDispatch<TYPES.AppDispatch>();
+  const nytApi = useSelector((state: TYPES.RootState) => state.nytApi);
+  const naoApi = useSelector((state: TYPES.RootState) => state.naoApi);
+  const tgaApi = useSelector((state: TYPES.RootState) => state.tgaApi);
 
-  const dados = useSelector((state: RootState) => state.favorites);
+  const dados = useSelector((state: TYPES.RootState) => state.favorites);
 
   const handleToggleFavorite = (
-    category: NewsCategory,
-    article: NormalizedArticle
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
   ) => {
     dispatch(toggleFavorite({ category, article }));
   };
 
-  const isFavorite = (category: NewsCategory, article: NormalizedArticle) => {
+  const isFavorite = (
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
+  ) => {
     const favorites = dados[category];
 
     if (favorites) {

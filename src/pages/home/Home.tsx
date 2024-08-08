@@ -3,35 +3,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsFromNYT } from "../../redux/slices/nytApiSlice";
 import { fetchNewsFromNAOrg } from "../../redux/slices/naoApiSlice";
 import { fetchNewsFromTGA } from "../../redux/slices/tgaApiSlice";
-import {
-  AppDispatch,
-  NewsCategory,
-  NormalizedArticle,
-  RootState,
-} from "../../lib/types";
-import { formatDate } from "../../lib/utils";
 import FavButton from "../../components/favButton";
 import NewsSourceSection from "../../components/newsSourceSection";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
+import * as UTILS from "../../lib/utils";
+import * as TYPES from "../../lib/types";
 
 const Home = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const nytApi = useSelector((state: RootState) => state.nytApi);
-  const naoApi = useSelector((state: RootState) => state.naoApi);
-  const tgaApi = useSelector((state: RootState) => state.tgaApi);
+  const dispatch = useDispatch<TYPES.AppDispatch>();
+  const nytApi = useSelector((state: TYPES.RootState) => state.nytApi);
+  const naoApi = useSelector((state: TYPES.RootState) => state.naoApi);
+  const tgaApi = useSelector((state: TYPES.RootState) => state.tgaApi);
 
-  const newsOrgTopNews = [...naoApi.articles].reverse();
+  const newsOrgTopNews = [...nytApi.articles].reverse();
 
-  const dados = useSelector((state: RootState) => state.favorites);
+  const dados = useSelector((state: TYPES.RootState) => state.favorites);
 
   const handleToggleFavorite = (
-    category: NewsCategory,
-    article: NormalizedArticle
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
   ) => {
     dispatch(toggleFavorite({ category, article }));
   };
 
-  const isFavorite = (category: NewsCategory, article: NormalizedArticle) => {
+  const isFavorite = (
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
+  ) => {
     const favorites = dados[category];
 
     if (favorites) {
@@ -69,7 +67,7 @@ const Home = () => {
                     />
                   </a>
                   <span className="font-bold">
-                    {formatDate(article.publishedAt)}
+                    {UTILS.formatDate(article.publishedAt)}
                   </span>
                   <h1 className="text-4xl font-bold mt-4">{article.title}</h1>
                   <p className="mt-4">{article.description}</p>
@@ -83,8 +81,10 @@ const Home = () => {
                     <span>Read more</span>
                   </a>
                   <FavButton
-                    onClick={() => handleToggleFavorite("newsOpenApi", article)}
-                    isFavorite={isFavorite("newsOpenApi", article)}
+                    onClick={() =>
+                      handleToggleFavorite("newYorkTimes", article)
+                    }
+                    isFavorite={isFavorite("newYorkTimes", article)}
                   />
                 </article>
               ))}
@@ -100,7 +100,6 @@ const Home = () => {
         onClick={handleToggleFavorite}
         isFavorite={isFavorite}
       />
-
       <NewsSourceSection
         titleSource="News from News Org"
         sloganSource="Search worldwide news."
@@ -108,7 +107,6 @@ const Home = () => {
         onClick={handleToggleFavorite}
         isFavorite={isFavorite}
       />
-
       <NewsSourceSection
         titleSource="News from The Guardian"
         sloganSource="The breaking news is here."

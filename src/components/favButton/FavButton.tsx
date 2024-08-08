@@ -1,7 +1,7 @@
 import { IoMdStar, IoMdStarOutline } from "react-icons/io";
-import { FavButtonProps } from "../../lib/types";
+import * as TYPES from "../../lib/types";
 
-const FavButton = ({ onClick, isFavorite }: FavButtonProps) => {
+const FavButton = ({ onClick, isFavorite }: TYPES.FavButtonProps) => {
   return (
     <>
       {isFavorite && (

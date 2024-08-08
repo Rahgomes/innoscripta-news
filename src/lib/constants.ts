@@ -1,6 +1,6 @@
-import { FavoriteState, FilterState } from "./types";
+import * as TYPES from "./types";
 
-export const INITIAL_STATE_FAVORITE: FavoriteState = {
+export const INITIAL_STATE_FAVORITE: TYPES.FavoriteState = {
   newsOpenApi: [],
   newYorkTimes: [],
   theGuardian: [],
@@ -28,7 +28,7 @@ export const MAIN_MENU = [
   },
 ];
 
-export const INITIAL_STATE_SEARCH_FILTER: FilterState = {
+export const INITIAL_STATE_SEARCH_FILTER: TYPES.FilterState = {
   searchKeyword: "",
   selectedCategory: "",
   startDate: "",

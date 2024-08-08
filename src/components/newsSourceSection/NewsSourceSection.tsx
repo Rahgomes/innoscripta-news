@@ -1,4 +1,4 @@
-import { NewsCategorySectionProps } from "../../lib/types";
+import * as TYPES from "../../lib/types";
 import FavButton from "../favButton";
 
 const NewsCategorySection = ({
@@ -7,7 +7,7 @@ const NewsCategorySection = ({
   articles,
   onClick,
   isFavorite,
-}: NewsCategorySectionProps) => {
+}: TYPES.NewsCategorySectionProps) => {
   return (
     <section className="py-6 sm:py-12  text-gray-800">
       <div className="container p-6 mx-auto space-y-8">
@@ -61,7 +61,7 @@ const NewsCategorySection = ({
                   <p className="flex-1 text-sm leading-snug">Read more</p>
                 </a>
 
-                <div className="flex flex-wrap items-center mt-8 space-x-2 text-xs text-gray-600">
+                <div className="flex flex-wrap items-center mt-8 mb-5 space-x-2 text-xs text-gray-600">
                   <img
                     alt={article.author}
                     title={article.author}

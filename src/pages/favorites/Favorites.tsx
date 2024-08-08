@@ -1,27 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import NewsSourceSection from "../../components/newsSourceSection";
-import {
-  AppDispatch,
-  NewsCategory,
-  NormalizedArticle,
-  RootState,
-} from "../../lib/types";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
+import NewsSourceSection from "../../components/newsSourceSection";
 import Title from "../../components/title";
+import * as TYPES from "../../lib/types";
 
 const Favorites = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const favorites = useSelector((state: RootState) => state.favorites);
+  const dispatch = useDispatch<TYPES.AppDispatch>();
+  const favorites = useSelector((state: TYPES.RootState) => state.favorites);
 
   const handleToggleFavorite = (
-    category: NewsCategory,
-    article: NormalizedArticle
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
   ) => {
     dispatch(toggleFavorite({ category, article }));
   };
 
-  const isFavorite = (category: NewsCategory, article: NormalizedArticle) => {
+  const isFavorite = (
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
+  ) => {
     const favoritesByCategory = favorites[category];
 
     if (favoritesByCategory) {

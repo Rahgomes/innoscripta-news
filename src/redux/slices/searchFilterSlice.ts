@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { INITIAL_STATE_SEARCH_FILTER } from "../../lib/constants";
+import * as CONSTS from "../../lib/constants";
 
 const filterSlice = createSlice({
   name: "filter",
-  initialState: INITIAL_STATE_SEARCH_FILTER,
+  initialState: CONSTS.INITIAL_STATE_SEARCH_FILTER,
   reducers: {
     setSearchKeyword(state, action: PayloadAction<string>) {
       state.searchKeyword = action.payload;

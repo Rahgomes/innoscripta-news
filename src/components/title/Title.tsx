@@ -1,6 +1,6 @@
-import { TitleProps } from "../../lib/types";
+import * as TYPES from "../../lib/types";
 
-const Title = ({ title }: TitleProps) => {
+const Title = ({ title }: TYPES.TitleProps) => {
   return (
     <h1 className="flex flex-row flex-nowrap items-center py-10">
       <span

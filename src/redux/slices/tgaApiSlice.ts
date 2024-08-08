@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../apiConfig/axiosInstance";
-import { NormalizedArticle, Query } from "../../lib/types";
-import { tgaArticleFactory } from "../../lib/factories";
 import { constructTGAUrl } from "../../lib/api";
+import * as TYPES from "../../lib/types";
+import * as FACTORY from "../../lib/factories";
 
 export const fetchNewsFromTGA = createAsyncThunk(
   "tgaApi/fetchNews",
-  async (queryParams?: Query) => {
+  async (queryParams?: TYPES.Query) => {
     const url = constructTGAUrl(queryParams);
 
     const response = await axiosInstance.get(url);
 
-    return response.data.response.results.map(tgaArticleFactory);
+    return response.data.response.results.map(FACTORY.tgaArticleFactory);
   }
 );
 
 const slice = createSlice({
   name: "tgaApi",
   initialState: {
-    articles: [] as NormalizedArticle[],
+    articles: [] as TYPES.NormalizedArticle[],
     status: "idle",
     errorMessage: "",
   },

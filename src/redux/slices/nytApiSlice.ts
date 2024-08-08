@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../apiConfig/axiosInstance";
-import { NormalizedArticle, Query } from "../../lib/types";
-import { nytArticleFactory } from "../../lib/factories";
 import { constructNYTUrl } from "../../lib/api";
+import * as FACTORY from "../../lib/factories";
+import * as TYPES from "../../lib/types";
 
 export const fetchNewsFromNYT = createAsyncThunk(
   "nytApi/fetchNews",
-  async (queryParams?: Query) => {
+  async (queryParams?: TYPES.Query) => {
     const url = constructNYTUrl(queryParams);
 
     const response = await axiosInstance.get(url);
 
-    return response.data.response.docs.map(nytArticleFactory);
+    return response.data.response.docs.map(FACTORY.nytArticleFactory);
   }
 );
 
 const slice = createSlice({
   name: "nytApi",
   initialState: {
-    articles: [] as NormalizedArticle[],
+    articles: [] as TYPES.NormalizedArticle[],
     status: "idle",
     errorMessage: "",
   },

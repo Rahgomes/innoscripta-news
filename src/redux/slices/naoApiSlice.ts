@@ -1,24 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../apiConfig/axiosInstance";
-import { NormalizedArticle, Query } from "../../lib/types";
-import { naoArticleFactory } from "../../lib/factories";
 import { constructNAOrgUrl } from "../../lib/api";
+import * as FACTORY from "../../lib/factories";
+import * as TYPES from "../../lib/types";
 
 export const fetchNewsFromNAOrg = createAsyncThunk(
   "naoApi/fetchNews",
-  async (queryParams?: Query) => {
+  async (queryParams?: TYPES.Query) => {
     const url = constructNAOrgUrl(queryParams);
 
     const response = await axiosInstance.get(url);
 
-    return response.data.articles.map(naoArticleFactory);
+    return response.data.articles.map(FACTORY.naoArticleFactory);
   }
 );
 
 const slice = createSlice({
   name: "naoApi",
   initialState: {
-    articles: [] as NormalizedArticle[],
+    articles: [] as TYPES.NormalizedArticle[],
     status: "idle",
     errorMessage: "",
   },

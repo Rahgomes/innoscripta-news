@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState, SearchFilterProps } from "../../lib/types";
+import * as TYPES from "../../lib/types";
 
 const SearchFilter = ({
   handleSearchChange,
@@ -7,9 +7,9 @@ const SearchFilter = ({
   handleStartDateChange,
   handleEndDateChange,
   handleSourceChange,
-}: SearchFilterProps) => {
+}: TYPES.SearchFilterProps) => {
   const { searchKeyword, selectedCategory, startDate, endDate, source } =
-    useSelector((state: RootState) => state.filter);
+    useSelector((state: TYPES.RootState) => state.filter);
 
   return (
     <>

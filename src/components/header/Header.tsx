@@ -4,21 +4,23 @@ import { useNavigate } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
 
-import { AppDispatch, RootState } from "../../lib/types";
 import { setSearchKeyword } from "../../redux/slices/searchFilterSlice";
 import Sidebar from "../menu/sidebar/Sidebar";
 import MainMenu from "../menu/main/MainMenu";
+import * as TYPES from "../../lib/types";
 
 const Header = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<TYPES.AppDispatch>();
 
   const [showSidebar, setShowSidebar] = useState("hidden");
 
   const showMobileMenu = () => setShowSidebar("");
   const closeMobileMenu = () => setShowSidebar("hidden");
 
-  const { searchKeyword } = useSelector((state: RootState) => state.filter);
+  const { searchKeyword } = useSelector(
+    (state: TYPES.RootState) => state.filter
+  );
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchKeyword(e.target.value));

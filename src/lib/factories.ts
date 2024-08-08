@@ -1,6 +1,8 @@
-import { naoArticle, NormalizedArticle, nytArticle, tgaArticle } from "./types";
+import * as TYPES from "./types";
 
-export const nytArticleFactory = (article: nytArticle): NormalizedArticle => ({
+export const nytArticleFactory = (
+  article: TYPES.nytArticle
+): TYPES.NormalizedArticle => ({
   id: article._id,
   title: article.headline.main,
   description: article.snippet,
@@ -15,7 +17,9 @@ export const nytArticleFactory = (article: nytArticle): NormalizedArticle => ({
   sourceCategory: "newYorkTimes",
 });
 
-export const naoArticleFactory = (article: naoArticle): NormalizedArticle => ({
+export const naoArticleFactory = (
+  article: TYPES.naoArticle
+): TYPES.NormalizedArticle => ({
   id: article.url,
   title: article.title,
   description: article.description,
@@ -27,7 +31,9 @@ export const naoArticleFactory = (article: naoArticle): NormalizedArticle => ({
   sourceCategory: "newsOpenApi",
 });
 
-export const tgaArticleFactory = (article: tgaArticle): NormalizedArticle => ({
+export const tgaArticleFactory = (
+  article: TYPES.tgaArticle
+): TYPES.NormalizedArticle => ({
   id: article.id,
   title: article.webTitle,
   description: article.webTitle,

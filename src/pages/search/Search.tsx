@@ -1,11 +1,5 @@
-import Title from "../../components/title";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  RootState,
-  AppDispatch,
-  NewsCategory,
-  NormalizedArticle,
-} from "../../lib/types";
 import {
   setSearchKeyword,
   setSelectedCategory,
@@ -13,18 +7,19 @@ import {
   setEndDate,
   setSource,
 } from "../../redux/slices/searchFilterSlice";
-import NewsSourceSection from "../../components/newsSourceSection";
 import { toggleFavorite } from "../../redux/slices/favoriteSlice";
-import { useEffect } from "react";
 import { fetchNewsFromNYT } from "../../redux/slices/nytApiSlice";
 import { fetchNewsFromNAOrg } from "../../redux/slices/naoApiSlice";
 import { fetchNewsFromTGA } from "../../redux/slices/tgaApiSlice";
+import Title from "../../components/title";
+import NewsSourceSection from "../../components/newsSourceSection";
 import SearchFilter from "../../components/searchFilter";
+import * as TYPES from "../../lib/types";
 
 const Search = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<TYPES.AppDispatch>();
   const { searchKeyword, selectedCategory, startDate, endDate, source } =
-    useSelector((state: RootState) => state.filter);
+    useSelector((state: TYPES.RootState) => state.filter);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchKeyword(e.target.value));
@@ -46,20 +41,23 @@ const Search = () => {
     dispatch(setSource(e.target.value));
   };
 
-  const nytApi = useSelector((state: RootState) => state.nytApi);
-  const naoApi = useSelector((state: RootState) => state.naoApi);
-  const tgaApi = useSelector((state: RootState) => state.tgaApi);
+  const nytApi = useSelector((state: TYPES.RootState) => state.nytApi);
+  const naoApi = useSelector((state: TYPES.RootState) => state.naoApi);
+  const tgaApi = useSelector((state: TYPES.RootState) => state.tgaApi);
 
-  const dados = useSelector((state: RootState) => state.favorites);
+  const dados = useSelector((state: TYPES.RootState) => state.favorites);
 
   const handleToggleFavorite = (
-    category: NewsCategory,
-    article: NormalizedArticle
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
   ) => {
     dispatch(toggleFavorite({ category, article }));
   };
 
-  const isFavorite = (category: NewsCategory, article: NormalizedArticle) => {
+  const isFavorite = (
+    category: TYPES.NewsCategory,
+    article: TYPES.NormalizedArticle
+  ) => {
     const favorites = dados[category];
 
     if (favorites) {
