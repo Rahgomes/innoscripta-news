@@ -67,12 +67,6 @@ export type FavoriteState = {
   theGuardian: NormalizedArticle[];
 };
 
-// export interface FavoriteState {
-//   [NewsCategory.NewsOpenApi]: NormalizedArticle[];
-//   [NewsCategory.NewYorkTimes]: NormalizedArticle[];
-//   [NewsCategory.TheGuardian]: NormalizedArticle[];
-// }
-
 export type NormalizedArticle = {
   id: string;
   title: string;

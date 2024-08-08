@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import { IoIosSearch } from "react-icons/io";
-import { FaFilter } from "react-icons/fa";
 import { MAIN_MENU } from "../../lib/constants";
 
 const Header = () => {

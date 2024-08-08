@@ -1,4 +1,4 @@
-import { FavoriteState, FilterState, NewsCategory } from "./types";
+import { FavoriteState, FilterState } from "./types";
 
 export const INITIAL_STATE_FAVORITE: FavoriteState = {
   newsOpenApi: [],
