@@ -32,12 +32,12 @@ npm install
 
 3. **Create a .env file in the root directory and add your API keys**
 
-VITE_REACT_NEWS_API_ORG=your_newsapi_key
-VITE_REACT_NEWS_API_ORG_SECRET=your_newsapi_secret
-VITE_REACT_NEW_YORK_TIMES=your_nyt_api_key
-VITE_REACT_NEW_YORK_TIMES_SECRET=your_nyt_secret
-VITE_REACT_THE_GUARDIAN=your_guardian_api_key
-VITE_REACT_THE_GUARDIAN_SECRET=your_guardian_secret
+- VITE_REACT_NEWS_API_ORG=your_newsapi_key
+- VITE_REACT_NEWS_API_ORG_SECRET=your_newsapi_secret
+- VITE_REACT_NEW_YORK_TIMES=your_nyt_api_key
+- VITE_REACT_NEW_YORK_TIMES_SECRET=your_nyt_secret
+- VITE_REACT_THE_GUARDIAN=your_guardian_api_key
+- VITE_REACT_THE_GUARDIAN_SECRET=your_guardian_secret
 
 Obs: For now, the URL and KEY parameters are in the code to an easy executing
 
@@ -80,3 +80,7 @@ In the project directory, you can run:
 - Vite: A fast front-end build tool.
 - Tailwind CSS: A utility-first CSS framework for rapid UI development.
 - Docker: A platform for developing, shipping, and running applications in containers.
+
+## Homepage Preview
+
+![Innoscripta News Screenshot](./home-preview.png)
