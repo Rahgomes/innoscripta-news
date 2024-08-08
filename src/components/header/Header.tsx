@@ -49,13 +49,6 @@ const Header = () => {
             <IoIosSearch />
           </button>
 
-          {/* <button
-            type="button"
-            className="hidden px-6 py-2 font-semibold rounded lg:block bg-slate-50"
-          >
-            <FaFilter />
-          </button> */}
-
           <button
             type="button"
             className="hidden px-6 py-2 font-semibold rounded lg:block bg-slate-50"

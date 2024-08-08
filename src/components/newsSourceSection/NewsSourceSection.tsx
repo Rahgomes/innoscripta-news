@@ -36,13 +36,6 @@ const NewsCategorySection = ({
               )}
 
               <div className="flex flex-col flex-1 p-6">
-                {/* <a
-            rel="noopener noreferrer"
-            href="#"
-            className="text-xs tracking-wider uppercase hover:underline text-violet-600"
-          >
-            Convenire
-          </a> */}
                 <a
                   rel="noopener noreferrer"
                   href={article.url}
