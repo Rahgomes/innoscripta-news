@@ -1,19 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "../../api/config";
+import axiosInstance from "../../apiConfig/axiosInstance";
 import { NormalizedArticle, Query } from "../../lib/types";
 import { nytArticleFactory } from "../../lib/factories";
-import { getFormattedDate } from "../../lib/utils";
+import { constructNYTUrl } from "../../lib/api";
 
 export const fetchNewsFromNYT = createAsyncThunk(
   "nytApi/fetchNews",
   async (queryParams?: Query) => {
-    const query =
-      queryParams?.keyword || queryParams?.category || "international";
-    const rangeDate = `begin_date=${queryParams?.rangeDate?.startDate || getFormattedDate(new Date())}&end_date=${queryParams?.rangeDate?.endDate || getFormattedDate(new Date())}`;
+    const url = constructNYTUrl(queryParams);
 
-    const response = await axiosInstance.get(
-      `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&${rangeDate}&api-key=F7paSKHxiKstJxVoGIuS57qQR0Lz6An6`
-    );
+    const response = await axiosInstance.get(url);
 
     return response.data.response.docs.map(nytArticleFactory);
   }

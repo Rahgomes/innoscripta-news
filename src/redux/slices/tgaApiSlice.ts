@@ -1,19 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "../../api/config";
+import axiosInstance from "../../apiConfig/axiosInstance";
 import { NormalizedArticle, Query } from "../../lib/types";
 import { tgaArticleFactory } from "../../lib/factories";
+import { constructTGAUrl } from "../../lib/api";
 
 export const fetchNewsFromTGA = createAsyncThunk(
   "tgaApi/fetchNews",
   async (queryParams?: Query) => {
-    const query =
-      queryParams?.keyword || queryParams?.category || "international";
-    const rangeDate = `from-date=${queryParams?.rangeDate?.startDate || "2014-01-01"}`;
-    // const rangeDate = `from-date=2014-01-01`;
+    const url = constructTGAUrl(queryParams);
 
-    const response = await axiosInstance.get(
-      `https://content.guardianapis.com/search?q=${query}&${rangeDate}&api-key=b3c337a5-ad72-4dc5-97e8-51c0814aa782`
-    );
+    const response = await axiosInstance.get(url);
 
     return response.data.response.results.map(tgaArticleFactory);
   }

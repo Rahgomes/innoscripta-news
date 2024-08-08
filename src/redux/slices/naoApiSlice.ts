@@ -1,22 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "../../api/config";
+import axiosInstance from "../../apiConfig/axiosInstance";
 import { NormalizedArticle, Query } from "../../lib/types";
 import { naoArticleFactory } from "../../lib/factories";
-import { formatDate2 } from "../../lib/utils";
+import { constructNAOrgUrl } from "../../lib/api";
 
 export const fetchNewsFromNAOrg = createAsyncThunk(
   "naoApi/fetchNews",
   async (queryParams?: Query) => {
-    const date = new Date();
-    date.setDate(date.getDate() - 15);
+    const url = constructNAOrgUrl(queryParams);
 
-    const query =
-      queryParams?.keyword || queryParams?.category || "international";
-    const rangeDate = `from=${queryParams?.rangeDate?.startDate || formatDate2(date)}&to=${queryParams?.rangeDate?.endDate || formatDate2(new Date())}`;
-
-    const response = await axiosInstance.get(
-      `https://newsapi.org/v2/everything?q=${query}&${rangeDate}&apiKey=f01b596f50554730946205bf49502ae6`
-    );
+    const response = await axiosInstance.get(url);
 
     return response.data.articles.map(naoArticleFactory);
   }
