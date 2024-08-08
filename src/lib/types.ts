@@ -114,3 +114,20 @@ export type Query = {
     endDate?: string;
   };
 };
+
+export type SidebarProps = {
+  closeMobileMenu: () => void;
+  showSidebar: string;
+};
+
+export type SearchFilterProps = {
+  handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleCategoryChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleStartDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEndDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSourceChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+};
+
+export type MainMenuProps = {
+  isFooter: boolean;
+};

@@ -1,5 +1,4 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
-const { addDynamicIconSelectors } = require("@iconify/tailwind");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,5 +6,4 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [addDynamicIconSelectors()],
 };
